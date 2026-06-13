@@ -47,7 +47,7 @@ Sports-Shirts_Sales-System/
 │
 ├── model/
 │   ├── cliente.py
-│   ├── camiseta.py
+│   ├── camisetaFactory.py
 │   └── venda.py
 │
 ├── dao/
@@ -55,9 +55,6 @@ Sports-Shirts_Sales-System/
 │   ├── cliente_dao.py
 │   ├── camiseta_dao.py
 │   └── venda_dao.py
-│
-├── factory/
-│   └── camiseta_factory.py
 │
 ├── controller/
 │   ├── cliente_controller.py
@@ -169,7 +166,7 @@ Essas chaves estrangeiras garantem o relacionamento obrigatório entre as classe
 ## 7. Script Completo do Banco de Dados
 
 ```sql
-CREATE DATABASE lpoo_projeto_lucas-teixeira;
+CREATE DATABASE lpoo_projeto_lucas_teixeira;
 
 CREATE TABLE IF NOT EXISTS tb_cliente (
     ID_CLIENTE SERIAL PRIMARY KEY,
@@ -200,7 +197,7 @@ CREATE TABLE IF NOT EXISTS tb_venda (
     CAMISETA_ID INTEGER NOT NULL,
     QUANTIDADE INTEGER NOT NULL,
     VLTOTAL NUMERIC(10,2) NOT NULL,
-    DAVENDA TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    DAVENDA TIMESTAMP(0) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT fk_venda_cliente 
         FOREIGN KEY (CLIENTE_ID)
