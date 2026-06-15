@@ -8,7 +8,7 @@ class DatabaseConfig:
         try:
             conexao = psycopg2.connect(
                 user="postgres",
-                password="Sacul123@",   ## Lembrar de trocar para localhost quando projeto finalizar
+                password="postgres", 
                 host="localhost",
                 port="5432",
                 database="lpoo_projeto_lucas_teixeira"
