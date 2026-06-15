@@ -197,7 +197,7 @@ CREATE TABLE IF NOT EXISTS tb_venda (
     CAMISETA_ID INTEGER NOT NULL,
     QUANTIDADE INTEGER NOT NULL,
     VLTOTAL NUMERIC(10,2) NOT NULL,
-    DAVENDA TIMESTAMP(0) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    DAVENDA DATE NOT NULL,
 
     CONSTRAINT fk_venda_cliente 
         FOREIGN KEY (CLIENTE_ID)
@@ -219,10 +219,71 @@ CREATE INDEX IF NOT EXISTS idx_camiseta_selecao ON tb_camiseta (SELECAO);
 
 ## 8. Padrão DAO
 
+O padrão DAO foi utilizado para separar o acesso ao banco de dados das regras das classes de domínio e da interface gráfica.
+
+Cada entidade principal possui sua própria classe DAO:
+
+* `ClienteDAO`
+* `CamisetaDAO`
+* `VendaDAO`
+
+Essas classes são responsáveis pelas operações de persistência no PostgreSQL, como cadastrar, listar, atualizar, remover e buscar registros. A interface gráfica não acessa o banco diretamente; ela se comunica com os controllers, que chamam os DAOs.
+
 ## 9. Padrão Factory
+
+O padrão Factory foi aplicado na criação de objetos do tipo `Camiseta`.
+
+A classe `CamisetaFactory` centraliza a criação das camisetas e valida o tipo informado, permitindo apenas os tipos previstos no sistema:
+
+* `JOGADOR`
+* `RETRO`
+* `TREINO`
+* `TORCEDOR`
+
+Com isso, a criação dos objetos fica padronizada e evita repetição de lógica em outras partes do projeto.
 
 ## 10. Interface Gráfica
 
+A interface gráfica foi desenvolvida com Tkinter, seguindo o padrão utilizado nas aulas.
+
+O sistema possui uma janela principal com menu de navegação e telas separadas para:
+
+* cadastro e listagem de clientes;
+* cadastro e listagem de camisetas;
+* registro e listagem de vendas;
+* tela Sobre.
+
+As telas utilizam `tk.Toplevel`, mantendo apenas uma janela principal `tk.Tk`. As listagens são exibidas com `ttk.Treeview`, e os formulários possuem validações básicas de entrada, como campos obrigatórios, CPF formatado e quantidade de venda compatível com o estoque.
+
+## Como Executar o Projeto
+
+1. Crie o banco de dados PostgreSQL com o nome `lpoo_projeto_lucas_teixeira`.
+
+2. Execute o script SQL da seção 7 para criar as tabelas `tb_cliente`, `tb_camiseta` e `tb_venda`.
+
+3. Confira os dados de conexão em `dao/db_config.py`, ajustando usuário, senha, host e porta conforme o PostgreSQL local.
+
+4. Instale a dependência do PostgreSQL, se necessário:
+
+```bash
+pip install psycopg2
+```
+
+5. Na pasta do projeto, execute:
+
+```bash
+python main.py
+```
+
+6. Use o menu principal para acessar os cadastros de clientes, camisetas e vendas.
+
+## Declaração de Uso de Inteligência Artificial
+
+Utilizei o modelo ChatGPT Plus como ferramenta de apoio em pontos específicos do desenvolvimento.
+
+O auxílio foi utilizado principalmente em validações pontuais, como restringir o CPF a no máximo 11 dígitos e aplicar o formato `000.000.000-00`, além de apoiar a comunicação entre `view`, `controller` e `model`.
+
+Também houve apoio na criação das views em Tkinter, especialmente na organização visual, posicionamento dos componentes e estrutura das telas. Todo o código foi revisado e adaptado conforme os requisitos da disciplina de LPOO e do projeto.
 
 ## Autor
 
@@ -235,5 +296,3 @@ Disciplina: Linguagem de Programação Orientada a Objetos — LPOO
 Professora: Vanessa Lago Machado
 
 Período: 2026/1
-
-## Declaração de Uso de Inteligência Artificial

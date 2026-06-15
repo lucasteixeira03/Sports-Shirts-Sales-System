@@ -8,7 +8,7 @@ class DatabaseConfig:
         try:
             conexao = psycopg2.connect(
                 user="postgres",
-                password="postgres", 
+                password="Sacul123@",   ## Lembrar de trocar para localhost quando projeto finalizar
                 host="localhost",
                 port="5432",
                 database="lpoo_projeto_lucas_teixeira"
@@ -22,7 +22,7 @@ class DatabaseConfig:
     def testar_conexao():
         conexao = DatabaseConfig.get_connection()
         if not conexao:
-            return False, "Nao foi possivel conectar ao banco de dados."
+            return False, "Não foi possivel conectar ao banco de dados."
 
         conexao.close()
-        return True, "Conexao com o banco de dados realizada com sucesso."
+        return True, "Conexão com o banco de dados realizada com sucesso."
