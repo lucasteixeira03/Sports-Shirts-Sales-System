@@ -31,7 +31,7 @@ class Camiseta:
     @selecao.setter
     def selecao(self, selecao: str):
         if not selecao or not selecao.strip():
-            raise ValueError("Selecao e obrigatória.")
+            raise ValueError("Selecão é obrigatória.")
         self.__selecao = selecao.strip()
 
     @property
@@ -41,7 +41,7 @@ class Camiseta:
     @modelo.setter
     def modelo(self, modelo: str):
         if not modelo or not modelo.strip():
-            raise ValueError("Modelo e obrigatório.")
+            raise ValueError("Modelo é obrigatório.")
         self.__modelo = modelo.strip()
 
     @property
@@ -51,7 +51,7 @@ class Camiseta:
     @tamanho.setter
     def tamanho(self, tamanho: str):
         if not tamanho or not tamanho.strip():
-            raise ValueError("Tamanho e obrigatório.")
+            raise ValueError("Tamanho é obrigatório.")
         self.__tamanho = tamanho.strip().upper()
 
     @property
@@ -61,7 +61,7 @@ class Camiseta:
     @preco.setter
     def preco(self, preco):
         if preco is None:
-            raise ValueError("O preco e obrigatorio.")
+            raise ValueError("O preço é obrigatório.")
 
         try:
             preco_float = float(str(preco).replace(",", "."))
@@ -80,7 +80,7 @@ class Camiseta:
     @estoque.setter
     def estoque(self, estoque: int):
         if estoque is None:
-            raise ValueError("E obrigatório definir uma quantidade de estoque.")
+            raise ValueError("É obrigatório definir uma quantidade de estoque.")
 
         try:
             estoque_int = int(estoque)

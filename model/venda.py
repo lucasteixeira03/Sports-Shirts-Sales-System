@@ -5,8 +5,7 @@ from model.cliente import Cliente
 
 
 class Venda:
-    def __init__(self, cliente: Cliente, camiseta: Camiseta, quantidade: int, id: int = None, 
-                 valor_total: float = None, data_venda=None, validar_estoque: bool = True):
+    def __init__(self, cliente: Cliente, camiseta: Camiseta, quantidade: int, id: int = None,  valor_total: float = None, data_venda=None, validar_estoque: bool = True):
         self.id = id
         self.__cliente = None
         self.__camiseta = None
